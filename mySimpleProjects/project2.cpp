@@ -1,0 +1,92 @@
+#include<bits/stdc++.h>
+using namespace std;
+// Function to generate a random number
+int generateRandomNumber(int start, int end) {
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dist(start, end);
+    return dist(gen);
+}
+
+int main()
+{
+    /*// Random Number Generation
+    srand(time(0));
+    int endn = 2;
+    int random = rand() % (endn + 1); // Generate random number (0 = Rock, 1 = Paper, 2 = Scissors)*/
+
+    int start=0 , endn=2 ;
+    int random = generateRandomNumber(start, endn);
+    // Game variables
+    int iteration = 0;     // Track number of rounds
+    int winner = 0;        // Track player's wins
+    int loss = 0;          // Track player's losses
+
+    // Game loop (best-of-five)
+    do
+    {
+        int playerchoice;
+        cout << "Enter 0 for Rock, 1 for Paper, 2 for Scissors: \n";
+        cin >> playerchoice;
+
+        // Check for tie
+        if (random == playerchoice)
+            cout << "It’s a tie!\n";
+
+        // Computer picks Rock (random = 0)
+        else if (random == 0)
+        {
+            if (playerchoice == 1)      // Player picks Paper
+            {
+                cout << "You won\n";    // Paper beats Rock
+                winner++;
+            }
+            else if (playerchoice == 2) // Player picks Scissors
+            {
+                cout << "You lost!\n";  // Rock beats Scissors
+                loss++;
+            }
+        }
+        // Computer picks Paper (random = 1)
+        else if (random == 1)
+        {
+            if (playerchoice == 0)      // Player picks Rock
+            {
+                cout << "You lost\n";   // Paper beats Rock
+                loss++;
+            }
+            else if (playerchoice == 2) // Player picks Scissors
+            {
+                cout << "You won\n";    // Scissors beats Paper
+                winner++;
+            }
+        }
+        // Computer picks Scissors (random = 2)
+        else if (random == 2)
+        {
+            if (playerchoice == 1)      // Player picks Paper
+            {
+                cout << "You lost\n";   // Scissors beats Paper
+                loss++;
+            }
+            else if (playerchoice == 0) // Player picks Rock
+            {
+                cout << "You won\n";    // Rock beats Scissors
+                winner++;
+            }
+        }
+
+        iteration++;  // Increment round counter
+
+    } while (iteration < 5);  // Run for 3 rounds
+
+    // Display final score
+    cout << "Wins: " << winner << ", Losses: " << loss << endl;
+    if (winner > loss)
+        cout << "Finally, you are the winner!\n";
+    else if (loss > winner)
+        cout << "Finally, you are the loser!\n";
+    else
+        cout << "Finally, it’s a tie!\n";
+    return 0;
+}
