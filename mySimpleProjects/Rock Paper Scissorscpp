@@ -31,7 +31,7 @@ int main()
 
         // Check for tie
         if (random == playerchoice)
-            cout << "It’s a tie!\n";
+            cout << "Itâ€™s a tie!\n";
 
         // Computer picks Rock (random = 0)
         else if (random == 0)
@@ -87,6 +87,6 @@ int main()
     else if (loss > winner)
         cout << "Finally, you are the loser!\n";
     else
-        cout << "Finally, it’s a tie!\n";
+        cout << "Finally, itâ€™s a tie!\n";
     return 0;
 }
