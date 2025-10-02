@@ -7,12 +7,12 @@ int main()
     cin>>n >>q ;
 
     int arr[n] ;
-    vector<int> prefix ;
+    vector<int> prefix(n);
 
     for(int i=0; i<n; i++)
     {
         cin>>arr[i] ;
-        prefix[i] = prefix[i] + arr[i] ;
+        prefix[i] = prefix[i-1] + arr[i] ;
     }
 
 
@@ -27,6 +27,7 @@ int main()
     }
     return 0;
     }
+
 
 
 
